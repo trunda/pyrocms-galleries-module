@@ -1,0 +1,9 @@
+{
+    "name": "signifymedia/galleries-module",
+    "type": "streams-addon",
+    "autoload": {
+        "psr-4": {
+            "Signifymedia\\GalleriesModule\\": "src/"
+        }
+    }
+}
