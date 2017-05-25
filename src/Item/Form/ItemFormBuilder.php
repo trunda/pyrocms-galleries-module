@@ -1,57 +1,66 @@
 <?php namespace Signifymedia\GalleriesModule\Item\Form;
 
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
+use Signifymedia\GalleriesModule\Gallery\Contract\GalleryInterface;
 
 class ItemFormBuilder extends FormBuilder
 {
-
-    /**
-     * The form fields.
-     *
-     * @var array|string
-     */
-    protected $fields = [];
-
     /**
      * Fields to skip.
      *
      * @var array|string
      */
-    protected $skips = [];
+    protected $skips = [
+        'entry',
+        'gallery',
+    ];
 
     /**
-     * The form actions.
-     *
-     * @var array|string
+     * @var GalleryInterface
      */
-    protected $actions = [];
+    protected $gallery;
 
     /**
-     * The form buttons.
-     *
-     * @var array|string
+     * @return GalleryInterface
      */
-    protected $buttons = [];
+    public function getGallery()
+    {
+        return $this->gallery;
+    }
 
     /**
-     * The form options.
-     *
-     * @var array
+     * @param GalleryInterface $gallery
+     * @return ItemFormBuilder
      */
-    protected $options = [];
+    public function setGallery($gallery)
+    {
+        $this->gallery = $gallery;
+
+        return $this;
+    }
 
     /**
-     * The form sections.
+     * Fired when the builder is ready to build.
      *
-     * @var array
+     * @throws \Exception
      */
-    protected $sections = [];
+    public function onReady()
+    {
+        if (!$this->getGallery() && !$this->getEntry()) {
+            throw new \Exception('The gallery is required when creating a gallery.');
+        }
+    }
 
     /**
-     * The form assets.
-     *
-     * @var array
+     * Fired just before saving the form.
      */
-    protected $assets = [];
+    public function onSaving()
+    {
+        $entry = $this->getFormEntry();
+
+        if (!$entry->gallery_id) {
+            $entry->gallery_id = $this->getGallery()->getId();
+        }
+    }
 
 }
