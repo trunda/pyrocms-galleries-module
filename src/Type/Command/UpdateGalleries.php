@@ -1,7 +1,6 @@
 <?php
 namespace Signifymedia\GalleriesModule\Type\Command;
 
-use Anomaly\PostsModule\Post\Contract\PostRepositoryInterface;
 use Signifymedia\GalleriesModule\Gallery\Contract\GalleryInterface;
 use Signifymedia\GalleriesModule\Gallery\Contract\GalleryRepositoryInterface;
 use Signifymedia\GalleriesModule\Type\Contract\TypeInterface;
@@ -13,9 +12,6 @@ use Signifymedia\GalleriesModule\Type\Contract\TypeRepositoryInterface;
  */
 class UpdateGalleries
 {
-
-    use DispatchesJobs;
-
     /**
      * The post type instance.
      *

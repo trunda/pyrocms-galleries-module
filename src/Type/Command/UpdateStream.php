@@ -51,7 +51,7 @@ class UpdateStream
                     'name'        => $this->type->getName(),
                     'description' => $this->type->getDescription(),
                 ],
-                'slug' => $this->type->getSlug() . '_galleries',
+                'slug' => $this->type->getSlug() . '_items',
             ]
         );
 

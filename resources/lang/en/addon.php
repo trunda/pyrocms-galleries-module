@@ -9,5 +9,6 @@ return [
         'types'       => 'Types',
         'fields'      => 'Fields',
         'assignments' => 'Assignments',
+        'items'       => 'Items',
     ],
 ];

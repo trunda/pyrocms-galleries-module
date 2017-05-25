@@ -1,6 +1,7 @@
 <?php namespace Signifymedia\GalleriesModule\Type\Contract;
 
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
+use Anomaly\Streams\Platform\Entry\EntryCollection;
 use Anomaly\Streams\Platform\Stream\Contract\StreamInterface;
 
 /**
@@ -38,4 +39,14 @@ interface TypeInterface extends EntryInterface
      * @return string
      */
     public function getEntryModelName();
+
+    /**
+     * @return string
+     */
+    public function getLayout();
+
+    /**
+     * @return EntryCollection
+     */
+    public function getGalleries();
 }

@@ -1,6 +1,8 @@
-<?php namespace Signifymedia\GalleriesModule\Gallery\Form;
+<?php
+namespace Signifymedia\GalleriesModule\Gallery\Form;
 
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
+use Signifymedia\GalleriesModule\Type\Contract\TypeInterface;
 
 class GalleryFormBuilder extends FormBuilder
 {
@@ -10,48 +12,72 @@ class GalleryFormBuilder extends FormBuilder
      *
      * @var array|string
      */
-    protected $fields = [];
+    protected $fields = [
+        '*',
+        'slug' => [
+            'disabled' => 'edit'
+        ]
+    ];
 
     /**
      * Fields to skip.
      *
      * @var array|string
      */
-    protected $skips = [];
+    protected $skips = [
+        'type'
+    ];
 
     /**
-     * The form actions.
-     *
-     * @var array|string
+     * @var TypeInterface
      */
-    protected $actions = [];
+    protected $type;
 
     /**
-     * The form buttons.
+     * Get the type.
      *
-     * @var array|string
+     * @return TypeInterface|null
      */
-    protected $buttons = [];
+    public function getType()
+    {
+        return $this->type;
+    }
 
     /**
-     * The form options.
+     * Set the type.
      *
-     * @var array
+     * @param  TypeInterface $type
+     * @return $this
      */
-    protected $options = [];
+    public function setType(TypeInterface $type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
 
     /**
-     * The form sections.
+     * Fired when the builder is ready to build.
      *
-     * @var array
+     * @throws \Exception
      */
-    protected $sections = [];
+    public function onReady()
+    {
+        if (!$this->getType()) {
+            throw new \Exception('The $type parameter is required when creating a post.');
+        }
+    }
 
     /**
-     * The form assets.
-     *
-     * @var array
+     * Save the entry id
      */
-    protected $assets = [];
+    public function onSaving()
+    {
+        $entry = $this->getFormEntry();
+        if (!$entry->type_id) {
+            $entry->type_id = $this->getType()->getId();
+        }
+    }
 
 }

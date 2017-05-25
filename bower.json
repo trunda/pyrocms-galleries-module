@@ -1,0 +1,6 @@
+{
+  "name": "galleries-module",
+  "dependencies": {
+    "lightbox2": "^2.9.0"
+  }
+}

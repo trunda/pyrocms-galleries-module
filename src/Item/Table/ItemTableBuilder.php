@@ -4,27 +4,16 @@ use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
 
 class ItemTableBuilder extends TableBuilder
 {
-
-    /**
-     * The table views.
-     *
-     * @var array|string
-     */
-    protected $views = [];
-
-    /**
-     * The table filters.
-     *
-     * @var array|string
-     */
-    protected $filters = [];
-
     /**
      * The table columns.
      *
      * @var array|string
      */
-    protected $columns = [];
+    protected $columns = [
+        'image' => [
+            'value' => 'entry.image.cropped.heighten(70)'
+        ]
+    ];
 
     /**
      * The table buttons.
@@ -43,19 +32,4 @@ class ItemTableBuilder extends TableBuilder
     protected $actions = [
         'delete'
     ];
-
-    /**
-     * The table options.
-     *
-     * @var array
-     */
-    protected $options = [];
-
-    /**
-     * The table assets.
-     *
-     * @var array
-     */
-    protected $assets = [];
-
 }

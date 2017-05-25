@@ -32,6 +32,6 @@ class GetTypeStream
      */
     public function handle(StreamRepositoryInterface $streams)
     {
-        return $streams->findBySlugAndNamespace($this->type->getSlug() . '_galleries', 'galleries');
+        return $streams->findBySlugAndNamespace($this->type->getSlug() . '_items', 'galleries');
     }
 }

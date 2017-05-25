@@ -12,11 +12,11 @@ class SignifymediaModuleGalleriesCreateGalleriesStream extends Migration
      */
     protected $stream = [
         'slug'         => 'galleries',
+        'title_column' => 'name',
         'translatable' => true,
         'searchable'   => true,
         'trashable'    => true,
         'sortable'     => true,
-
     ];
 
     /**
@@ -31,13 +31,12 @@ class SignifymediaModuleGalleriesCreateGalleriesStream extends Migration
         ],
 
         'slug' => [
-            'required'     => true,
-            'translatable' => false,
+            'required' => true,
+            'unique'   => true,
         ],
 
         'type' => [
-            'required'     => true,
-            'translatable' => false,
+            'required' => true,
         ],
     ];
 }

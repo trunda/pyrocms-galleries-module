@@ -18,12 +18,15 @@ return [
     'description' => [
         'name'         => 'Description',
         'instructions' => [
-            'types' => 'Briefly describe the gallery type.'
+            'types' => 'Briefly describe the gallery type.',
         ],
     ],
-    'layout'           => [
+    'layout'      => [
         'name'         => 'Gallery Layout',
         'instructions' => 'The layout is used for displaying the gallerie\'s content.',
+    ],
+    'image'       => [
+        'name' => 'Image',
     ],
 
 ];

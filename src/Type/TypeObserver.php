@@ -4,7 +4,7 @@ use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 use Anomaly\Streams\Platform\Entry\EntryObserver;
 use Signifymedia\GalleriesModule\Type\Command\CreateTypeStream;
 use Signifymedia\GalleriesModule\Type\Command\DeleteTypeStream;
-use Signifymedia\GalleriesModule\Type\Command\UpdateGalleries;
+use Signifymedia\GalleriesModule\Type\Command\UpdateItems;
 use Signifymedia\GalleriesModule\Type\Command\UpdateStream;
 use Signifymedia\GalleriesModule\Type\Contract\TypeInterface;
 
@@ -43,7 +43,7 @@ class TypeObserver extends EntryObserver
     public function updating(EntryInterface $entry)
     {
         $this->commands->dispatch(new UpdateStream($entry));
-        $this->commands->dispatch(new UpdateGalleries($entry));
+        $this->commands->dispatch(new UpdateItems($entry));
 
         parent::updating($entry);
     }

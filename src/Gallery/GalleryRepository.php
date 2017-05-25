@@ -3,6 +3,10 @@
 use Signifymedia\GalleriesModule\Gallery\Contract\GalleryRepositoryInterface;
 use Anomaly\Streams\Platform\Entry\EntryRepository;
 
+/**
+ * Class GalleryRepository
+ * @package Signifymedia\GalleriesModule\Gallery
+ */
 class GalleryRepository extends EntryRepository implements GalleryRepositoryInterface
 {
 
@@ -21,5 +25,14 @@ class GalleryRepository extends EntryRepository implements GalleryRepositoryInte
     public function __construct(GalleryModel $model)
     {
         $this->model = $model;
+    }
+
+    /**
+     * @param $slug
+     * @return mixed
+     */
+    public function findBySlug($slug)
+    {
+        return $this->model->where('slug', $slug)->first();
     }
 }

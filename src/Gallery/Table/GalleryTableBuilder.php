@@ -1,30 +1,40 @@
-<?php namespace Signifymedia\GalleriesModule\Gallery\Table;
+<?php
+namespace Signifymedia\GalleriesModule\Gallery\Table;
 
 use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
 
+/**
+ * Class GalleryTableBuilder
+ * @package Signifymedia\GalleriesModule\Gallery\Table
+ */
 class GalleryTableBuilder extends TableBuilder
 {
-
-    /**
-     * The table views.
-     *
-     * @var array|string
-     */
-    protected $views = [];
-
     /**
      * The table filters.
      *
      * @var array|string
      */
-    protected $filters = [];
+    protected $filters = [
+        'search' => [
+            'fields' => [
+                'name',
+                'slug',
+            ],
+        ],
+    ];
+
 
     /**
      * The table columns.
      *
      * @var array|string
      */
-    protected $columns = [];
+    protected $columns = [
+        'name',
+        'slug' => [
+            'value' => '<span class="tag tag-default tag-sm">{entry.slug}</span>'
+        ]
+    ];
 
     /**
      * The table buttons.
@@ -32,7 +42,12 @@ class GalleryTableBuilder extends TableBuilder
      * @var array|string
      */
     protected $buttons = [
-        'edit'
+        'items' => [
+            'href' => 'admin/galleries/items/{entry.id}',
+            'type' => 'info',
+            'icon' => 'fa fa-picture-o'
+        ],
+        'edit',
     ];
 
     /**
@@ -49,13 +64,7 @@ class GalleryTableBuilder extends TableBuilder
      *
      * @var array
      */
-    protected $options = [];
-
-    /**
-     * The table assets.
-     *
-     * @var array
-     */
-    protected $assets = [];
-
+    protected $options = [
+        'sortable' => true
+    ];
 }

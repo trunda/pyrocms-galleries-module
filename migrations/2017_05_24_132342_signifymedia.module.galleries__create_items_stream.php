@@ -11,7 +11,11 @@ class SignifymediaModuleGalleriesCreateItemsStream extends Migration
      * @var array
      */
     protected $stream = [
-        'slug' => 'items'
+        'slug'         => 'items',
+        'translatable' => false,
+        'searchable'   => true,
+        'trashable'    => true,
+        'sortable'     => true,
     ];
 
     /**
@@ -19,6 +23,15 @@ class SignifymediaModuleGalleriesCreateItemsStream extends Migration
      *
      * @var array
      */
-    protected $assignments = [];
-
+    protected $assignments = [
+        'entry'   => [
+            'required' => true,
+        ],
+        'gallery' => [
+            'required' => true,
+        ],
+        'image'   => [
+            'required' => true,
+        ],
+    ];
 }

@@ -22,10 +22,10 @@ class SignifymediaModuleGalleriesCreateGalleriesFields extends Migration
      * @var array
      */
     protected $fields = [
-        'name'         => [
+        'name'        => [
             'type' => 'anomaly.field_type.text',
         ],
-        'slug'         => [
+        'slug'        => [
             'type'   => 'anomaly.field_type.slug',
             'config' => [
                 'slugify' => 'name',
@@ -33,28 +33,35 @@ class SignifymediaModuleGalleriesCreateGalleriesFields extends Migration
             ],
 
         ],
-        'image'        => [
+        'image'       => [
             'type'   => 'anomaly.field_type.image',
             'config' => [
                 'folders' => ['galleries_images'],
             ],
         ],
-        'description'  => [
+        'description' => [
             'type' => 'anomaly.field_type.textarea',
         ],
-        'layout'       => [
+        'layout'      => [
             'type'   => 'anomaly.field_type.editor',
             'config' => [
                 'default_value' => '{{  }}',
                 'mode'          => 'twig',
             ],
         ],
-        'type'         => [
+        'gallery'     => [
+            'type'   => 'anomaly.field_type.relationship',
+            'config' => [
+                'related' => 'Signifymedia\GalleriesModule\Gallery\GalleryModel',
+            ],
+        ],
+        'type'        => [
             'type'   => 'anomaly.field_type.relationship',
             'config' => [
                 'related' => 'Signifymedia\GalleriesModule\Type\TypeModel',
             ],
         ],
+        'entry'       => 'anomaly.field_type.polymorphic',
     ];
 
     /**

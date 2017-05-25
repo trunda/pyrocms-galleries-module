@@ -19,22 +19,27 @@ class GalleriesModule extends Module
      */
     protected $sections = [
         'galleries' => [
-            'buttons' => [
-                'new_gallery'
-            ]
-        ],
-        'types' => [
-            'buttons' => [
-                'new_type'
-            ]
-        ],
-        'fields'     => [
             'buttons'  => [
-                'new_field' => [
+                'new_gallery' => [
                     'data-toggle' => 'modal',
                     'data-target' => '#modal',
-                    'href'        => 'admin/galleries/fields/choose',
+                    'href'        => 'admin/galleries/choose',
                 ],
+            ],
+            'sections' => [
+                'items' => [
+                    'hidden'  => true,
+                    'matcher' => 'admin/galleries/items/*',
+                    'href'    => 'admin/galleries/items/{request.route.parameters.gallery}',
+                    'buttons' => [
+                        'new_item'
+                    ],
+                ],
+            ],
+        ],
+        'types'     => [
+            'buttons' => [
+                'new_type',
             ],
             'sections' => [
                 'assignments' => [
@@ -47,6 +52,15 @@ class GalleriesModule extends Module
                             'href'        => 'admin/galleries/assignments/{request.route.parameters.stream}/choose',
                         ],
                     ],
+                ],
+            ],
+        ],
+        'fields'    => [
+            'buttons'  => [
+                'new_field' => [
+                    'data-toggle' => 'modal',
+                    'data-target' => '#modal',
+                    'href'        => 'admin/galleries/fields/choose',
                 ],
             ],
         ],

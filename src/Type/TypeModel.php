@@ -1,6 +1,8 @@
 <?php namespace Signifymedia\GalleriesModule\Type;
 
+use Anomaly\Streams\Platform\Entry\EntryCollection;
 use Anomaly\Streams\Platform\Stream\Contract\StreamInterface;
+use Signifymedia\GalleriesModule\Gallery\GalleryModel;
 use Signifymedia\GalleriesModule\Type\Command\GetTypeStream;
 use Signifymedia\GalleriesModule\Type\Contract\srting;
 use Signifymedia\GalleriesModule\Type\Contract\TypeInterface;
@@ -8,7 +10,6 @@ use Anomaly\Streams\Platform\Model\Galleries\GalleriesTypesEntryModel;
 
 class TypeModel extends GalleriesTypesEntryModel implements TypeInterface
 {
-
     /**
      * Get the related entry stream ID.
      *
@@ -18,7 +19,7 @@ class TypeModel extends GalleriesTypesEntryModel implements TypeInterface
     {
         $stream = $this->getEntryStream();
 
-        return $stream->getId();
+        return $stream ? $stream->getId() : null;
     }
 
     /**
@@ -59,5 +60,31 @@ class TypeModel extends GalleriesTypesEntryModel implements TypeInterface
     public function getEntryModelName()
     {
         return $this->getEntryStream()->getEntryModelName();
+    }
+
+    /**
+     * @return string
+     */
+    public function getLayout()
+    {
+        return $this->layout;
+    }
+
+    /**
+     * @return EntryCollection
+     */
+    public function getGalleries()
+    {
+        return $this->galleries;
+    }
+
+    /**
+     * Return the posts relationship.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function galleries()
+    {
+        return $this->hasMany(GalleryModel::class, 'type_id');
     }
 }
