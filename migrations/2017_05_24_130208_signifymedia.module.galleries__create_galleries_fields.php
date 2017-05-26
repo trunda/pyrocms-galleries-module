@@ -45,7 +45,7 @@ class SignifymediaModuleGalleriesCreateGalleriesFields extends Migration
         'layout'      => [
             'type'   => 'anomaly.field_type.editor',
             'config' => [
-                'default_value' => '{{  }}',
+                'default_value' => '',
                 'mode'          => 'twig',
             ],
         ],
