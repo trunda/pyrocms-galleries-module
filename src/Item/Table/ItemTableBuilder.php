@@ -1,6 +1,8 @@
 <?php namespace Signifymedia\GalleriesModule\Item\Table;
 
 use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
+use Illuminate\Database\Eloquent\Builder;
+use Signifymedia\GalleriesModule\Gallery\Contract\GalleryInterface;
 
 class ItemTableBuilder extends TableBuilder
 {
@@ -32,4 +34,26 @@ class ItemTableBuilder extends TableBuilder
     protected $actions = [
         'delete'
     ];
+
+    /**
+     * @var GalleryInterface
+     */
+    protected $gallery;
+
+    /**
+     * @param GalleryInterface $gallery
+     * @return $this
+     */
+    public function setGallery(GalleryInterface $gallery)
+    {
+        $this->gallery = $gallery;
+        return $this;
+    }
+
+    public function onQuerying(Builder $query) {
+        if ($this->gallery) {
+            $query->where('gallery_id', $this->gallery->getId());
+        }
+    }
+
 }

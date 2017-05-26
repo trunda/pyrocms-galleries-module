@@ -48,7 +48,7 @@ class ItemsController extends AdminController
      */
     public function index(ItemTableBuilder $table)
     {
-        return $table->setEntries($this->gallery->items)->render();
+        return $table->setGallery($this->gallery)->render();
     }
 
     /**
