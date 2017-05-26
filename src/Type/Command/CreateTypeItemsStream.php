@@ -9,7 +9,7 @@ use Signifymedia\GalleriesModule\Type\Contract\TypeInterface;
  * Class CreateTypeStream
  * @package Signifymedia\GalleriesModule\Type\Command
  */
-class CreateTypeStream
+class CreateTypeItemsStream
 {
 
     /**

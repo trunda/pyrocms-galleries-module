@@ -2,10 +2,10 @@
 
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 use Anomaly\Streams\Platform\Entry\EntryObserver;
-use Signifymedia\GalleriesModule\Type\Command\CreateTypeStream;
-use Signifymedia\GalleriesModule\Type\Command\DeleteTypeStream;
+use Signifymedia\GalleriesModule\Type\Command\CreateTypeItemsStream;
+use Signifymedia\GalleriesModule\Type\Command\DeleteTypeItemsStream;
 use Signifymedia\GalleriesModule\Type\Command\UpdateItems;
-use Signifymedia\GalleriesModule\Type\Command\UpdateStream;
+use Signifymedia\GalleriesModule\Type\Command\UpdateTypeItemsStream;
 use Signifymedia\GalleriesModule\Type\Contract\TypeInterface;
 
 class TypeObserver extends EntryObserver
@@ -17,7 +17,7 @@ class TypeObserver extends EntryObserver
      */
     public function created(EntryInterface $entry)
     {
-        $this->commands->dispatch(new CreateTypeStream($entry));
+        $this->commands->dispatch(new CreateTypeItemsStream($entry));
 
         parent::created($entry);
     }
@@ -29,7 +29,7 @@ class TypeObserver extends EntryObserver
      */
     public function deleted(EntryInterface $entry)
     {
-        $this->commands->dispatch(new DeleteTypeStream($entry));
+        $this->commands->dispatch(new DeleteTypeItemsStream($entry));
 
         parent::deleted($entry);
     }
@@ -42,7 +42,7 @@ class TypeObserver extends EntryObserver
 
     public function updating(EntryInterface $entry)
     {
-        $this->commands->dispatch(new UpdateStream($entry));
+        $this->commands->dispatch(new UpdateTypeItemsStream($entry));
         $this->commands->dispatch(new UpdateItems($entry));
 
         parent::updating($entry);

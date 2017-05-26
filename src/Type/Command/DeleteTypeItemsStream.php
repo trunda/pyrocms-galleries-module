@@ -4,7 +4,7 @@ namespace Signifymedia\GalleriesModule\Type\Command;
 use Anomaly\Streams\Platform\Stream\Contract\StreamRepositoryInterface;
 use Signifymedia\GalleriesModule\Type\Contract\TypeInterface;
 
-class DeleteTypeStream
+class DeleteTypeItemsStream
 {
     /**
      * @var TypeInterface

@@ -11,7 +11,7 @@ use Signifymedia\GalleriesModule\Type\Contract\TypeRepositoryInterface;
  * Class UpdateStream
  * @package Signifymedia\GalleriesModule\Type\Command
  */
-class UpdateStream
+class UpdateTypeItemsStream
 {
     /**
      * The post type instance.

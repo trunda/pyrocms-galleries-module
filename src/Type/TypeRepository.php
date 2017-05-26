@@ -1,6 +1,6 @@
 <?php namespace Signifymedia\GalleriesModule\Type;
 
-use Signifymedia\GalleriesModule\Type\Command\DeleteTypeStream;
+use Signifymedia\GalleriesModule\Type\Command\DeleteTypeItemsStream;
 use Signifymedia\GalleriesModule\Type\Contract\TypeRepositoryInterface;
 use Anomaly\Streams\Platform\Entry\EntryRepository;
 
@@ -46,7 +46,7 @@ class TypeRepository extends EntryRepository implements TypeRepositoryInterface
 
         foreach ($this->model->all() as $entry)
         {
-            $this->dispatch(new DeleteTypeStream($entry));
+            $this->dispatch(new DeleteTypeItemsStream($entry));
         }
 
         return $this;
